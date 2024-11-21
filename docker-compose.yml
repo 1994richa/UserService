@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    container_name: user-management-service
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/userdb
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    container_name: mongo_user
+    ports:
+      - "28000:27017"
