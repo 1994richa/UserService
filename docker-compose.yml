@@ -1,16 +1,17 @@
 version: '3.7'
 services:
-  app:
+  user-management-service:
     build: .
     container_name: user-management-service
     ports:
       - "3000:3000"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/userdb
+      - MONGO_URI=mongodb://mongo_user:27017/userdb  # Correct MongoDB URI
     depends_on:
-      - mongo
-  mongo:
+      - mongo_user
+
+  mongo_user:
     image: mongo:latest
     container_name: mongo_user
     ports:
-      - "28000:27017"
+      - "28000:27017"  # Expose MongoDB on host port 28000, internal port is 27017
